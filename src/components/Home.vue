@@ -6,10 +6,10 @@
         <a href="/"><img src="../assets/logo.png" style="padding-left:8px;"></a>
       </div>
       <div class="topbar-logos" v-show="!collapsed">
-        <a href="/"><img src="../assets/logotxt.png"></a>
+        <!-- <a href="/"><img src="../assets/logotxt.png"></a> -->
       </div>
       <div class="topbar-title">
-        <span style="font-size: 18px;color: #fff;">后台管理系统</span>
+        <span style="font-size: 18px;color: #fff;">图书管理系统</span>
       </div>
       <div class="topbar-account topbar-btn">
         <el-dropdown trigger="click">
@@ -66,7 +66,6 @@
         </div>
       </section>
     </el-col>
-
   </el-row>
 </template>
 
@@ -140,6 +139,12 @@
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
   .container {
     position: absolute;
     top: 0px;
@@ -227,7 +232,7 @@
         min-width: 60px;
       }
       .el-menu {
-        width: 180px;
+        width: 250px;
       }
       .el-menu--collapse {
         width: 60px;
@@ -249,13 +254,14 @@
       color: white;
       height: 26px;
       line-height: 30px;
+      padding: 12px 0;
     }
 
     .content-container {
       background: #fff;
       flex: 1;
       overflow-y: auto;
-      padding: 10px;
+      padding: 20px 30px;
       padding-bottom: 1px;
 
       .content-wrapper {

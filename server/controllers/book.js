@@ -1,6 +1,6 @@
 /**
  * books 控制器
- * Created by jerry on 2017/11/2.
+ * Created by summer on 2018/3/13.
  */
 const Mock = require('mockjs');
 const Books = require('../data/book');

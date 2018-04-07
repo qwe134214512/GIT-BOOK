@@ -11,6 +11,9 @@ export default {
 </script>
 
 <style>
+* {
+  font-family: 'HiraginoSansGB-W3'
+}
 body{
   padding:0px;
   margin:0px auto;

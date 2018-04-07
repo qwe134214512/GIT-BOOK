@@ -43,7 +43,7 @@ let router = new Router({
       leaf: true, // 只有一个节点
       iconCls: 'iconfont icon-users', // 图标样式class
       children: [
-        {path: '/user/list', component: UserList, name: '用户列表', menuShow: true}
+        {path: '/user/list', component: resolve => require(['@/components/user/list'], resolve), name: '用户列表', menuShow: true}
       ]
     },
     {

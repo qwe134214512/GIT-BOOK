@@ -1,7 +1,7 @@
 /**
  * 初始化图书(book)模拟数据
  *
- * Created by jerry on 2017/11/13.
+ * Created by summer on 2018/3/13.
  */
 const Mock = require('mockjs');
 

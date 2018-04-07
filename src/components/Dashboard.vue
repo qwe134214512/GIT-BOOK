@@ -5,10 +5,26 @@
         <el-breadcrumb-item :to="{ path: '/' }"><b>首页</b></el-breadcrumb-item>
       </el-breadcrumb>
     </el-col>
-
+    <el-carousel :interval="2000" type="card" height="430px">
+      <el-carousel-item v-for="(item, index) in imgs" :key="index">
+        <img :src="item.url" width="100%" height="100%" alt="">
+      </el-carousel-item>
+    </el-carousel>
     <el-col :span="24" class="warp-main">
       <section class="chart-container">
         <el-row>
+          <el-col :span="12">
+            <div id="chartColumn" style="width:100%; height:400px;"></div>
+          </el-col>
+          <el-col :span="12">
+            <div id="chartBar" style="width:100%; height:400px;"></div>
+          </el-col>
+          <el-col :span="12">
+            <div id="chartLine" style="width:100%; height:400px;"></div>
+          </el-col>
+          <el-col :span="12">
+            <div id="chartPie" style="width:100%; height:400px;"></div>
+          </el-col>
           <el-col :span="8">
             <el-card :body-style="{ padding: '0px' }">
               <img src="../assets/images/forest.png" class="image">
@@ -42,21 +58,6 @@
               </div>
             </el-card>
           </el-col>
-          <el-col :span="12">
-            <div id="chartColumn" style="width:100%; height:400px;"></div>
-          </el-col>
-          <el-col :span="12">
-            <div id="chartBar" style="width:100%; height:400px;"></div>
-          </el-col>
-          <el-col :span="12">
-            <div id="chartLine" style="width:100%; height:400px;"></div>
-          </el-col>
-          <el-col :span="12">
-            <div id="chartPie" style="width:100%; height:400px;"></div>
-          </el-col>
-          <el-col :span="24">
-            <a href="http://echarts.baidu.com/examples.html" target="_blank" style="float: right;">more>></a>
-          </el-col>
         </el-row>
       </section>
 
@@ -64,6 +65,24 @@
   </el-row>
 </template>
 <style>
+  .el-carousel {
+    width: 100%;
+  }
+  .el-carousel__item h3 {
+    color: #475669;
+    font-size: 14px;
+    opacity: 0.75;
+    line-height: 200px;
+    margin: 0;
+  }
+  
+  .el-carousel__item:nth-child(2n) {
+    background-color: #99a9bf;
+  }
+  
+  .el-carousel__item:nth-child(2n+1) {
+    background-color: #d3dce6;
+  }
   .time {
     font-size: 13px;
     color: #999;
@@ -107,7 +126,14 @@
         chartColumn: null,
         chartBar: null,
         chartLine: null,
-        chartPie: null
+        chartPie: null,
+        imgs: [
+          { url: require('../assets/images/banner/ban-1.jpg'), value: 1 },
+          { url: require('../assets/images/banner/ban-2.jpg'), value: 2 },
+          { url: require('../assets/images/banner/ban-3.jpg'), value: 3 },
+          { url: require('../assets/images/banner/ban-4.jpg'), value: 4 },
+          { url: require('../assets/images/banner/ban-5.jpg'), value: 5 },
+          ]
       };
     },
     mounted: function () {
@@ -119,23 +145,25 @@
       this.chartPie = echarts.init(document.getElementById('chartPie'));
 
       this.chartColumn.setOption({
+        color: ['#3398DB'],
         title: { text: 'Column Chart' },
         tooltip: {},
         xAxis: {
-          data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+          data: ["哲学类 ", "文化教育", "自然科学", "工业技术", "少儿读物", "财经管理", "语言文字", "戏曲小品"]
         },
         yAxis: {},
         series: [{
           name: '销量',
           type: 'bar',
-          data: [5, 20, 36, 10, 10, 20]
+          data: [500, 2000, 3600, 1000, 1000, 2000, 2500, 500]
         }]
       });
 
       this.chartBar.setOption({
+        color: ['#8B8B7A', '#3398DB'],
         title: {
           text: 'Bar Chart',
-          subtext: '数据来自网络'
+          subtext: '数据来自系统'
         },
         tooltip: {
           trigger: 'axis',
@@ -144,7 +172,7 @@
           }
         },
         legend: {
-          data: ['2011年', '2012年']
+          data: ['2017年', '2018年']
         },
         grid: {
           left: '3%',
@@ -158,18 +186,18 @@
         },
         yAxis: {
           type: 'category',
-          data: ['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)']
+          data: ['经典著作', '社会科学', '军事科学', '历史地理', '中国文学', '图书总数（本）']
         },
         series: [
           {
-            name: '2011年',
+            name: '2017年',
             type: 'bar',
-            data: [18203, 23489, 29034, 104970, 131744, 630230]
+            data: [1120, 448, 1293, 1049, 2317, 5802]
           },
           {
-            name: '2012年',
+            name: '2018年',
             type: 'bar',
-            data: [19325, 23438, 31000, 121594, 134141, 681807]
+            data: [1195, 640, 1600, 1214, 3341, 6818]
           }
         ]
       });
@@ -182,7 +210,7 @@
           trigger: 'axis'
         },
         legend: {
-          data: ['邮件营销', '联盟广告', '搜索引擎']
+          data: ['借出数量', '借阅次数', '阅读人数']
         },
         grid: {
           left: '3%',
@@ -200,22 +228,22 @@
         },
         series: [
           {
-            name: '邮件营销',
+            name: '借阅次数',
             type: 'line',
             stack: '总量',
             data: [120, 132, 101, 134, 90, 230, 210]
           },
           {
-            name: '联盟广告',
+            name: '阅读人数',
             type: 'line',
             stack: '总量',
             data: [220, 182, 191, 234, 290, 330, 310]
           },
           {
-            name: '搜索引擎',
+            name: '借出数量',
             type: 'line',
             stack: '总量',
-            data: [820, 932, 901, 934, 1290, 1330, 1320]
+            data: [520, 632, 601, 634, 990, 1030, 1020]
           }
         ]
       });
@@ -233,7 +261,7 @@
         legend: {
           orient: 'vertical',
           left: 'left',
-          data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+          data: ['生活', '小说', '文学', '艺术', '体育']
         },
         series: [
           {
@@ -242,11 +270,11 @@
             radius: '55%',
             center: ['50%', '60%'],
             data: [
-              { value: 335, name: '直接访问' },
-              { value: 310, name: '邮件营销' },
-              { value: 234, name: '联盟广告' },
-              { value: 135, name: '视频广告' },
-              { value: 1548, name: '搜索引擎' }
+              { value: 335, name: '生活' },
+              { value: 310, name: '小说' },
+              { value: 1548, name: '文学' },
+              { value: 135, name: '艺术' },
+              { value: 234, name: '体育' }
             ],
             itemStyle: {
               emphasis: {
